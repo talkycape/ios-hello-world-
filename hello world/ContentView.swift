@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  hello world
 //
-//  Created by Sabrina Hsieh on 6/27/21.
+//  Created by Ya-Chieh Lai on 6/27/21.
 //
 
 import SwiftUI
