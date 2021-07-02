@@ -8,6 +8,7 @@
 import SwiftUI
 import AVFoundation
 
+// This splash view appears for 2.5 seconds when the app first starts
 struct splashView: View {
 
     @State var isActive:Bool = false
@@ -15,6 +16,7 @@ struct splashView: View {
     var body: some View {
         VStack {
             if self.isActive {
+                // go to main view
                 ContentView()
             } else {
                 Image("AwesomeSplash")
@@ -34,9 +36,8 @@ struct splashView: View {
     
 }
 
+// This is the main view
 struct ContentView: View {
-    @State private var isPressed = false
-    
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
@@ -73,12 +74,12 @@ struct ContentView: View {
                 }
             }
             .frame(width: 300, height: 800)
-            .navigationTitle("My Menu Bar")
+            .navigationTitle("My Main Screen")
         }
     }
-    
 }
 
+// this is a secondary view with an image
 struct myImageView: View {
     var body: some View {
         // Here is how you display an image and scale it to fix a certain window size
@@ -89,8 +90,8 @@ struct myImageView: View {
     }
 }
 
+// this is a secondary view that shows some text and plays a sound
 struct mySoundView: View {
-    
     var body: some View {
         VStack {
             Text("Show image or text here")
@@ -99,9 +100,9 @@ struct mySoundView: View {
             playAudioAsset("myTestSound")
         })
     }
-
 }
 
+// Not great practice to make this global, but easier to demonstrate
 var audioPlayer: AVAudioPlayer!
 
 // Here is a simple function to play a sound from Assets.xcassets
