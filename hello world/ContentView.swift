@@ -52,9 +52,9 @@ struct ContentView: View {
                 }
                 Divider()
                 Button(action: {
-                    playAudioAsset("myTestSound")
+                    playAudioAsset("gross")
                   }, label: {
-                      Text("Or use a button to perform an action")
+                      Text("Or use a button - pull my finger!")
                   })
                 Divider()
                 HStack(spacing:10) {
