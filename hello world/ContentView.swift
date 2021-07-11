@@ -51,7 +51,6 @@ struct ContentView: View {
                 NavigationLink(destination: mySoundView()) {
                     Text("Now let's follow a link to play a sound")
                 }
-                Divider()
                 NavigationLink(destination: myVideoView()) {
                     Text("Now let's follow a link to play a video")
                 }
@@ -62,21 +61,21 @@ struct ContentView: View {
                       Text("Or use a button - pull my finger!")
                   })
                 Divider()
-//                HStack(spacing:10) {
-//                    Text("Horizontal Content:")
-//                    Image("spongebob")
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fit)
-//                        .frame(width: 50, height: 50)
-//                    Image("plankton")
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fit)
-//                        .frame(width: 50, height: 50)
-//                    Image("patrick")
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fit)
-//                        .frame(width: 50, height: 50)
-//                }
+                HStack(spacing:10) {
+                    Text("Horizontal Content:")
+                    Image("spongebob")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 50, height: 50)
+                    Image("plankton")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 50, height: 50)
+                    Image("patrick")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 50, height: 50)
+                }
             }
             .frame(width: 300, height: 800)
             .navigationTitle("My Main Screen")
@@ -125,13 +124,20 @@ func playAudioAsset(_ assetName : String) {
 }
 
 
-// this is a secondary view with an image
+// this is a secondary view with an video
 struct myVideoView: View {
     var body: some View {
         VideoPlayer(player: AVPlayer(url: Bundle.main.url(forResource: "sandwich", withExtension: "mov")!))
     }
 }
 
+// this is a secondary view with an video from a URL
+// NOTE: THIS DOESN'T WORK BECAUSE YOUTUBE VIDEOS ARE NOT JUST AN IOS SUPPORTED VIDEO FILE
+struct myVideoFromURLView: View {
+    var body: some View {
+        VideoPlayer(player: AVPlayer(url: URL(string: "https://youtu.be/8YjFbMbfXaQ")!))
+    }
+}
 
 
 struct ContentView_Previews: PreviewProvider {
