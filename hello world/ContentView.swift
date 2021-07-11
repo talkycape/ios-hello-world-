@@ -7,6 +7,7 @@
 
 import SwiftUI
 import AVFoundation
+import AVKit
 
 // This splash view appears for 2.5 seconds when the app first starts
 struct splashView: View {
@@ -51,27 +52,31 @@ struct ContentView: View {
                     Text("Now let's follow a link to play a sound")
                 }
                 Divider()
+                NavigationLink(destination: myVideoView()) {
+                    Text("Now let's follow a link to play a video")
+                }
+                Divider()
                 Button(action: {
                     playAudioAsset("gross")
                   }, label: {
                       Text("Or use a button - pull my finger!")
                   })
                 Divider()
-                HStack(spacing:10) {
-                    Text("Horizontal Content:")
-                    Image("spongebob")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 50, height: 50)
-                    Image("plankton")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 50, height: 50)
-                    Image("patrick")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 50, height: 50)
-                }
+//                HStack(spacing:10) {
+//                    Text("Horizontal Content:")
+//                    Image("spongebob")
+//                        .resizable()
+//                        .aspectRatio(contentMode: .fit)
+//                        .frame(width: 50, height: 50)
+//                    Image("plankton")
+//                        .resizable()
+//                        .aspectRatio(contentMode: .fit)
+//                        .frame(width: 50, height: 50)
+//                    Image("patrick")
+//                        .resizable()
+//                        .aspectRatio(contentMode: .fit)
+//                        .frame(width: 50, height: 50)
+//                }
             }
             .frame(width: 300, height: 800)
             .navigationTitle("My Main Screen")
@@ -118,6 +123,16 @@ func playAudioAsset(_ assetName : String) {
       fatalError(error.localizedDescription)
    }
 }
+
+
+// this is a secondary view with an image
+struct myVideoView: View {
+    var body: some View {
+        VideoPlayer(player: AVPlayer(url: Bundle.main.url(forResource: "sandwich", withExtension: "mov")!))
+    }
+}
+
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
