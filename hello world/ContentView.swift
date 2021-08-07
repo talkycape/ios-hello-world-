@@ -192,7 +192,7 @@ struct YTWrapper : UIViewRepresentable {
 struct myYTView: View {
     
     var body: some View {
-//        YTWrapper(videoID: "jQtP1dD6jQ0")
+        //  You'll need to know the video ID of the YouTube Video you want
         YTWrapper(videoID: "8YjFbMbfXaQ")
     }
 }
