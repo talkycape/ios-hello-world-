@@ -56,16 +56,16 @@ struct ContentView: View {
         NavigationView {
             VStack(alignment: .leading) {
                 NavigationLink(destination: myImageView()) {
-                    Text("Now let's follow a link to an image or an embedded video")
+                    Text("Follow a link to an image/video")
                 }
                 NavigationLink(destination: mySoundView()) {
-                    Text("Now let's follow a link to play a sound")
+                    Text("Follow a link to play a sound")
                 }
                 NavigationLink(destination: myVideoView()) {
-                    Text("Now let's follow a link to play a video")
+                    Text("Follow a link to play a video")
                 }
                 NavigationLink(destination: myWebView()) {
-                    Text("Now let's follow a link to a webpage")
+                    Text("Follow a link to a webpage")
                 }
                 Divider()
                 Button(action: {
