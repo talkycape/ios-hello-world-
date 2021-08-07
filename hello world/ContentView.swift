@@ -8,6 +8,7 @@
 import SwiftUI
 import AVFoundation
 import AVKit
+import WebKit
 
 // This splash view appears for 2.5 seconds when the app first starts
 struct splashView: View {
@@ -42,17 +43,17 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             VStack(alignment: .leading) {
-                Text("Hello World!")
-                Divider()
                 NavigationLink(destination: myImageView()) {
                     Text("Now let's follow a link to an image")
                 }
-                Divider()
                 NavigationLink(destination: mySoundView()) {
                     Text("Now let's follow a link to play a sound")
                 }
                 NavigationLink(destination: myVideoView()) {
                     Text("Now let's follow a link to play a video")
+                }
+                NavigationLink(destination: myWebView()) {
+                    Text("Now let's follow a link to a webpage")
                 }
                 Divider()
                 Button(action: {
@@ -78,7 +79,7 @@ struct ContentView: View {
                 }
             }
             .frame(width: 300, height: 800)
-            .navigationTitle("My Main Screen")
+            .navigationTitle("Hello World")
         }
     }
 }
@@ -131,14 +132,28 @@ struct myVideoView: View {
     }
 }
 
-// this is a secondary view with an video from a URL
-// NOTE: THIS DOESN'T WORK BECAUSE YOUTUBE VIDEOS ARE NOT JUST AN IOS SUPPORTED VIDEO FILE
-struct myVideoFromURLView: View {
-    var body: some View {
-        VideoPlayer(player: AVPlayer(url: URL(string: "https://youtu.be/8YjFbMbfXaQ")!))
+// open a web page
+struct WebView : UIViewRepresentable {
+    
+    let request: URLRequest
+    
+    func makeUIView(context: Context) -> WKWebView  {
+        return WKWebView()
     }
+    
+    func updateUIView(_ uiView: WKWebView, context: Context) {
+        uiView.load(request)
+    }
+    
 }
 
+// this is a secondary view that opens a web page
+struct myWebView: View {
+    var body: some View {
+//        WebView(request: URLRequest(url: URL(string: "https://www.apple.com")!))
+        WebView(request: URLRequest(url: URL(string: "https://youtu.be/8YjFbMbfXaQ")!))
+    }
+}
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
