@@ -10,6 +10,18 @@ import AVFoundation
 import AVKit
 import WebKit
 
+// steps to include this in our project
+// 1. install cocoapods.  from the terminal: sudo gem install cocoapods
+// 2. set up Pods for your project.  cd to parent directory of project and then: pod init
+// 3. this will create a Podfile.  Modify it to add the line:   pod "youtube-ios-player-helper", "~> 1.0.3"
+//    (for reference, see: /Users/sabrinahsieh/iCloud/Developer/hello\ world/Podfile)
+// 4. type: pod install
+// 5. close your project if it is open
+// 6. re-open, BUT, open from top level (so Pods is included parallel to top level "hello world"
+
+import youtube_ios_player_helper
+
+
 // This splash view appears for 2.5 seconds when the app first starts
 struct splashView: View {
 
@@ -44,7 +56,7 @@ struct ContentView: View {
         NavigationView {
             VStack(alignment: .leading) {
                 NavigationLink(destination: myImageView()) {
-                    Text("Now let's follow a link to an image")
+                    Text("Now let's follow a link to an image or an embedded video")
                 }
                 NavigationLink(destination: mySoundView()) {
                     Text("Now let's follow a link to play a sound")
@@ -87,11 +99,18 @@ struct ContentView: View {
 // this is a secondary view with an image
 struct myImageView: View {
     var body: some View {
-        // Here is how you display an image and scale it to fix a certain window size
-        Image("RedPanda")
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .frame(width: 300, height: 300)
+        VStack(spacing: 0) {
+            Text("Here is an Image:")
+            // Here is how you display an image and scale it to fix a certain window size
+            Image("RedPanda")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 250, height: 250)
+            Text("And here is an embedded Youtube video:")
+            myYTView()
+                .aspectRatio(contentMode: .fit)
+                .frame(width: 300, height: 250)
+        }
     }
 }
 
@@ -132,7 +151,7 @@ struct myVideoView: View {
     }
 }
 
-// open a web page
+// to open a web page, we need to define a WebView
 struct WebView : UIViewRepresentable {
     
     let request: URLRequest
@@ -152,6 +171,29 @@ struct myWebView: View {
     var body: some View {
 //        WebView(request: URLRequest(url: URL(string: "https://www.apple.com")!))
         WebView(request: URLRequest(url: URL(string: "https://youtu.be/8YjFbMbfXaQ")!))
+    }
+}
+
+// Youtube wrapper
+struct YTWrapper : UIViewRepresentable {
+    var videoID : String
+    
+    func makeUIView(context: Context) -> YTPlayerView {
+        let playerView = YTPlayerView()
+        playerView.load(withVideoId: videoID)
+        return playerView
+    }
+    
+    func updateUIView(_ uiView: YTPlayerView, context: Context) {
+        //
+    }
+}
+
+struct myYTView: View {
+    
+    var body: some View {
+//        YTWrapper(videoID: "jQtP1dD6jQ0")
+        YTWrapper(videoID: "8YjFbMbfXaQ")
     }
 }
 
