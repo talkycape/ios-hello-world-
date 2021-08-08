@@ -180,7 +180,7 @@ struct YTWrapper : UIViewRepresentable {
     
     func makeUIView(context: Context) -> YTPlayerView {
         let playerView = YTPlayerView()
-        playerView.load(withVideoId: videoID)
+        playerView.load(withVideoId: videoID, playerVars: ["autoplay":"1"])
         return playerView
     }
     
