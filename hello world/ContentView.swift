@@ -12,6 +12,11 @@ import WebKit
 
 // steps to include this in our project
 // 1. install cocoapods.  from the terminal: sudo gem install cocoapods
+// EDIT: revisiting this on 12/25/22 and having problems with the command,
+//       and did this instead:
+//       a. re-installed homebrew by following instructions from: https://brew.sh
+//       b. as well as instructions from installation tiself
+//       c. brew install cocoapods
 // 2. set up Pods for your project.  cd to parent directory of project and then: pod init
 // 3. this will create a Podfile.  Modify it to add the line:   pod "youtube-ios-player-helper", "~> 1.0.3"
 //    (for reference, see: /Users/sabrinahsieh/iCloud/Developer/hello\ world/Podfile)
